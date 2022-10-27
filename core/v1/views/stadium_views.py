@@ -8,7 +8,7 @@ from ..serializers.stadium_serializers import StadiumSerializer
 
 class CreateStadiumAPIView(CreateAPIView):
     serializer_class = StadiumSerializer
-    # permission_classes = (IsFederationOrReadOnly, )
+    permission_classes = (IsFederationOrReadOnly, )
 
     def perform_create(self, serializer):
         instance = serializer.save()
