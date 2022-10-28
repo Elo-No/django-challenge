@@ -7,13 +7,14 @@ from core.v1.models import tickt
 from core.v1.models.stadium import StadiumSeat
 
 from core.v1.serializers.tickt_serializer import BuyTicktSerializer, SeatSerializer
+from drf_yasg.utils import swagger_auto_schema
 from utils.cache_function import get_all_key, getKey, setKey
 
 
 class ListSeatAPIView(ListAPIView):
     serializer_class = SeatSerializer
 
-    def get_queryset(self): 
+    def get_queryset(self):
         reserved_seats = get_all_key()
         return StadiumSeat.objects.all().exclude(id__in=reserved_seats)
 
